@@ -6,6 +6,7 @@ import { registerModeConfigs } from './config/mode-registry';
 import { Platform } from './platform/platform';
 import { MenuModule } from './menu/menu.module';
 import { MenuComponent } from './menu/menu.component';
+import { MenuController } from './menu/menu-controller';
 import { MenuToggleDirective } from './menu/menu-toggle.directive';
 import { MenuCloseDirective } from './menu/menu-close.directive';
 import { SplitPaneComponent } from './split-pane/split-pane.component';
@@ -18,6 +19,7 @@ import { SplitPaneComponent } from './split-pane/split-pane.component';
   ],
   exports: [
     MenuComponent,
+    MenuController,
     MenuCloseDirective,
     MenuToggleDirective,
     SplitPaneComponent,
