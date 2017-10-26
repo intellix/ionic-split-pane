@@ -1,6 +1,6 @@
 {
   "name": "ionic-split-pane",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Library QuickStart package.json from the documentation, supplemented with testing support",
   "main": "./dist/bundles/ionic-split-pane.umd.js",
   "module": "./dist/ionic-split-pane.es5.js",
