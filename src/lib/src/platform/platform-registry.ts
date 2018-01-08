@@ -1,7 +1,7 @@
 import { InjectionToken } from '@angular/core';
 
 import { Platform, PlatformConfig } from './platform';
-import { isCordova, isIos, isIosUIWebView } from './platform-utils';
+import { isCordova } from './platform-utils';
 
 
 export const PLATFORM_CONFIGS: { [key: string]: PlatformConfig } = {
@@ -12,7 +12,6 @@ export const PLATFORM_CONFIGS: { [key: string]: PlatformConfig } = {
   'core': {
     settings: {
       mode: 'md',
-      keyboardHeight: 290,
     },
   },
 
@@ -79,11 +78,6 @@ export const PLATFORM_CONFIGS: { [key: string]: PlatformConfig } = {
         // fallback to always use ripple
         return 'ripple';
       },
-      autoFocusAssist: 'immediate',
-      inputCloning: true,
-      scrollAssist: true,
-      hoverCSS: false,
-      keyboardHeight: 300,
       mode: 'md',
     },
     isMatch(plt: Platform) {
@@ -104,18 +98,7 @@ export const PLATFORM_CONFIGS: { [key: string]: PlatformConfig } = {
       'iphone',
     ],
     settings: {
-      autoFocusAssist: 'delay',
-      hoverCSS: false,
-      inputBlurring: isIos,
-      inputCloning: isIos,
-      keyboardHeight: 300,
       mode: 'ios',
-      scrollAssist: isIos,
-      statusbarPadding: isCordova,
-      swipeBackEnabled: isIos,
-      tapPolyfill: isIosUIWebView,
-      virtualScrollEventAssist: isIosUIWebView,
-      disableScrollAssist: isIos,
     },
     isMatch(plt: Platform) {
       return plt.isPlatformMatch('ios', ['iphone', 'ipad', 'ipod'], ['windows phone']);
@@ -130,9 +113,7 @@ export const PLATFORM_CONFIGS: { [key: string]: PlatformConfig } = {
    */
   'ipad': {
     superset: 'tablet',
-    settings: {
-      keyboardHeight: 500,
-    },
+    settings: {},
     isMatch(plt: Platform) {
       return plt.isPlatformMatch('ipad');
     },
@@ -161,8 +142,6 @@ export const PLATFORM_CONFIGS: { [key: string]: PlatformConfig } = {
     ],
     settings: {
       mode: 'wp',
-      autoFocusAssist: 'immediate',
-      hoverCSS: false,
     },
     isMatch(plt: Platform): boolean {
       return plt.isPlatformMatch('windows', ['windows phone']);

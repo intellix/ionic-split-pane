@@ -22,7 +22,6 @@ describe('Config', () => {
   it('should set activator setting to none for old Android Browser on a linux device', () => {
     plt.setUserAgent('Mozilla/5.0 (Linux; U; Android 4.2.2; nl-nl; GT-I9505 Build/JDQ39) AppleWebKit/534.30 (KHTML, like Gecko) Version/4.0 Mobile Safari/534.30');
     plt.setNavigatorPlatform('linux');
-    plt.setQueryParams('');
     plt.init();
     config.init(null, plt);
 
@@ -32,7 +31,6 @@ describe('Config', () => {
   it('should set activator setting to ripple for Android dev tools simulation on a mac', () => {
     plt.setUserAgent('Mozilla/5.0 (Linux; U; Android 4.2.2; nl-nl; GT-I9505 Build/JDQ39) AppleWebKit/534.30 (KHTML, like Gecko) Version/4.0 Mobile Safari/534.30');
     plt.setNavigatorPlatform('MacIntel');
-    plt.setQueryParams('');
     plt.init();
     config.init(null, plt);
 
@@ -42,7 +40,6 @@ describe('Config', () => {
   it('should set activator setting to none for Android Chrome versions below v36 on a linux device', () => {
     plt.setUserAgent('Mozilla/5.0 (Linux; Android 4.2.2; GT-I9505 Build/JDQ39) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/35.0.1650.59 Mobile Safari/537.36');
     plt.setNavigatorPlatform('linux');
-    plt.setQueryParams('');
     plt.init();
     config.init(null, plt);
 
@@ -52,7 +49,6 @@ describe('Config', () => {
   it('should set activator setting to ripple for Android v5.0 and above using Chrome v36 and above on a linux device', () => {
     plt.setUserAgent('Mozilla/5.0 (Linux; Android 5.0; Google Nexus 5 - 5.1.0 - API 22 - 1080x1920 Build/LMY47D) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Crosswalk/22.52.561.4 Mobile Safari/537.36');
     plt.setNavigatorPlatform('linux');
-    plt.setQueryParams('');
     plt.init();
     config.init(null, plt);
 
@@ -62,7 +58,6 @@ describe('Config', () => {
   it('should set activator setting to none for Android v4.4 and below and Chrome v36 and above on a linux device', () => {
     plt.setUserAgent('Mozilla/5.0 (Linux; Android 4.4.2; XT901 Build/KDA20.92-3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Crosswalk/22.52.561.4 Mobile Safari/537.36');
     plt.setNavigatorPlatform('linux');
-    plt.setQueryParams('');
     plt.init();
     config.init(null, plt);
 
@@ -72,7 +67,6 @@ describe('Config', () => {
   it('should set activator setting to ripple for Android v5.0 and above on a linux device not using Chrome', () => {
     plt.setUserAgent('Mozilla/5.0 (Android 5.0; Mobile; rv:41.0) Gecko/41.0 Firefox/41.0');
     plt.setNavigatorPlatform('linux');
-    plt.setQueryParams('');
     plt.init();
     config.init(null, plt);
 
@@ -82,7 +76,6 @@ describe('Config', () => {
   it('should set activator setting to none for Android versions below v5.0 on a linux device not using Chrome', () => {
     plt.setUserAgent('Mozilla/5.0 (Android 4.4; Mobile; rv:41.0) Gecko/41.0 Firefox/41.0');
     plt.setNavigatorPlatform('linux');
-    plt.setQueryParams('');
     plt.init();
     config.init(null, plt);
 
@@ -111,36 +104,6 @@ describe('Config', () => {
 
     expect(config.get('mode')).toEqual('md');
     expect(config.get('iconMode')).toEqual('md');
-  });
-
-  it('should get boolean value from querystring', () => {
-    plt.setQueryParams('http://biff.com/?ionicanimate=true');
-    config.init(null, plt);
-    expect(config.get('animate')).toEqual(true);
-
-    config = new Config();
-    plt = new Platform();
-    plt.setQueryParams('http://biff.com/?ionicanimate=false');
-    config.init(null, plt);
-    expect(config.get('animate')).toEqual(false);
-  });
-
-  it('should get value from case insensitive querystring key', () => {
-    plt.setQueryParams('http://biff.com/?ionicConfigKey=b');
-    config.init({
-      mode: 'a'
-    }, plt);
-
-    expect(config.get('configKey')).toEqual('b');
-  });
-
-  it('should get value from querystring', () => {
-    plt.setQueryParams('http://biff.com/?ionicmode=modeB');
-    config.init({
-      mode: 'modeA'
-    }, plt);
-
-    expect(config.get('mode')).toEqual('modeB');
   });
 
   it('should override mode platform', () => {

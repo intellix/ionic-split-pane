@@ -4,7 +4,7 @@ import { ChangeDetectionStrategy, Component, ContentChild, ElementRef, EventEmit
 import { BackdropComponent } from './backdrop/backdrop.component';
 import { Config } from '../config/config';
 import { DomController } from '../platform/dom-controller';
-import { GestureController, GESTURE_GO_BACK_SWIPE, BlockerDelegate } from '../gestures/gesture-controller';
+import { GestureController } from '../gestures/gesture-controller';
 import { Side, assert, isRightSide, isTrueProperty } from '../util/util';
 import { Keyboard } from '../platform/keyboard';
 import { MenuContentGesture } from './menu-gestures';
@@ -39,7 +39,6 @@ export class MenuComponent implements RootNode, MenuInterface, OnInit, OnDestroy
   private _isPersistent = false;
   private _init = false;
   private _events: UIEventManager;
-  private _gestureBlocker: BlockerDelegate;
   private _isPane = false;
   private _side: Side;
 
@@ -171,9 +170,6 @@ export class MenuComponent implements RootNode, MenuInterface, OnInit, OnDestroy
     private _domCtrl: DomController,
   ) {
     this._events = new UIEventManager(_plt);
-    this._gestureBlocker = _gestureCtrl.createBlocker({
-      disable: [GESTURE_GO_BACK_SWIPE]
-    });
     this.side = 'start';
   }
 
@@ -358,19 +354,15 @@ export class MenuComponent implements RootNode, MenuInterface, OnInit, OnDestroy
 
     this._events.unlistenAll();
     if (isOpen) {
-      // Disable swipe to go back gesture
-      this._gestureBlocker.block();
 
       this._cntEle.classList.add('menu-content-open');
-      let callback = this.onBackdropClick.bind(this);
+      const callback = this.onBackdropClick.bind(this);
       this._events.listen(this._cntEle, 'click', callback, { capture: true });
       this._events.listen(this.backdrop.getNativeElement(), 'click', callback, { capture: true });
 
       this.ionOpen.emit(true);
 
     } else {
-      // Enable swipe to go back gesture
-      this._gestureBlocker.unblock();
 
       this._cntEle.classList.remove('menu-content-open');
       this.setElementClass('show-menu', false);

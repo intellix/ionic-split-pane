@@ -30,7 +30,6 @@ export class Keyboard {
   private _tmr: any;
 
   constructor(config: Config, private _plt: Platform, private _zone: NgZone, private _dom: DomController) {
-    this.focusOutline(config.get('focusOutline'));
 
     const win = _plt.win();
 
@@ -133,74 +132,6 @@ export class Keyboard {
         });
       }
     });
-  }
-
-  /**
-   * @private
-   */
-  focusOutline(setting: any) {
-    /* Focus Outline
-     * --------------------------------------------------
-     * By default, when a keydown event happens from a tab key, then
-     * the 'focus-outline' css class is added to the body element
-     * so focusable elements have an outline. On a mousedown or
-     * touchstart event, then the 'focus-outline' css class is removed.
-     *
-     * Config default overrides:
-     * focusOutline: true     - Always add the focus-outline
-     * focusOutline: false    - Do not add the focus-outline
-     */
-
-    const self = this;
-    const platform = self._plt;
-    const doc = platform.doc();
-    let isKeyInputEnabled = false;
-    let unRegMouse: Function;
-    let unRegTouch: Function;
-    const evOpts = { passive: true, zone: false };
-
-    function cssClass() {
-      self._dom.write(() => {
-        (<any>platform.doc().body.classList)[isKeyInputEnabled ? 'add' : 'remove']('focus-outline');
-      });
-    }
-
-    if (setting === true) {
-      isKeyInputEnabled = true;
-      return cssClass();
-
-    } else if (setting === false) {
-      return;
-    }
-
-    // default is to add the focus-outline when the tab key is used
-    function keyDown(ev: KeyboardEvent) {
-      if (!isKeyInputEnabled && ev.keyCode === Key.TAB) {
-        isKeyInputEnabled = true;
-        enableKeyInput();
-      }
-    }
-
-    function pointerDown() {
-      isKeyInputEnabled = false;
-      enableKeyInput();
-    }
-
-    function enableKeyInput() {
-      cssClass();
-
-      unRegMouse && unRegMouse();
-      unRegTouch && unRegTouch();
-
-      if (isKeyInputEnabled) {
-        // listen for when a mousedown or touchstart event happens
-        unRegMouse = platform.registerListener(doc, 'mousedown', pointerDown, evOpts);
-        unRegTouch = platform.registerListener(doc, 'touchstart', pointerDown, evOpts);
-      }
-    }
-
-    // always listen for tab keydown events
-    platform.registerListener(platform.doc(), 'keydown', keyDown, evOpts);
   }
 
   hasFocusedTextInput() {

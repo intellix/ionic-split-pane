@@ -63,11 +63,6 @@ export class Config {
       let configObj: any = null;
 
       if (platform) {
-        const queryStringValue = platform.getQueryParam('ionic' + key);
-        if (isDefined(queryStringValue)) {
-          return this._c[key] = (queryStringValue === 'true' ? true : queryStringValue === 'false' ? false : queryStringValue);
-        }
-
         // check the platform settings object for this value
         // loop though each of the active platforms
 

@@ -1,22 +1,9 @@
 /* tslint:disable */
 import { forwardRef, Inject, Injectable } from '@angular/core';
-// import { App } from '../components/app/app';
 import { assert } from '../util/util';
 
 /** @private */
-export const GESTURE_GO_BACK_SWIPE = 'goback-swipe';
-
-/** @private */
 export const GESTURE_MENU_SWIPE = 'menu-swipe';
-
-/** @private */
-export const GESTURE_ITEM_SWIPE = 'item-swipe';
-
-/** @private */
-export const GESTURE_REFRESHER = 'refresher';
-
-/** @private */
-export const GESTURE_TOGGLE = 'toggle';
 
 /**
 * @private
@@ -30,11 +17,7 @@ export const enum GesturePriority {
   VeryHigh = 20,
   VeryVeryHigh = 30,
 
-  SlidingItem = Low,
   MenuSwipe = High,
-  GoBackSwipe = VeryHigh,
-  Refresher = Normal,
-  Toggle = VeryVeryHigh
 }
 
 /**
@@ -58,7 +41,7 @@ export interface BlockerOptions {
 * @private
 */
 export const BLOCK_ALL: BlockerOptions = {
-  disable: [GESTURE_MENU_SWIPE, GESTURE_GO_BACK_SWIPE],
+  disable: [GESTURE_MENU_SWIPE],
   disableScroll: true
 };
 

@@ -206,7 +206,6 @@ describe('Platform', () => {
 
   it('should set core as the fallback', () => {
     plt.setDefault('core');
-    plt.setQueryParams('');
     plt.setUserAgent('idk');
     plt.init();
 
@@ -215,73 +214,7 @@ describe('Platform', () => {
     expect(plt.is('core')).toEqual(true);
   });
 
-  it('should set windows via querystring', () => {
-    plt.setQueryParams('/?ionicplatform=windows');
-    plt.init();
-
-    expect(plt.is('core')).toEqual(false);
-    expect(plt.is('mobile')).toEqual(true);
-    expect(plt.is('android')).toEqual(false);
-    expect(plt.is('windows')).toEqual(true);
-    expect(plt.is('ios')).toEqual(false);
-  });
-
-  it('should set ios via querystring', () => {
-    plt.setQueryParams('/?ionicplatform=ios');
-    plt.init();
-
-    expect(plt.is('core')).toEqual(false);
-    expect(plt.is('mobile')).toEqual(true);
-    expect(plt.is('android')).toEqual(false);
-    expect(plt.is('windows')).toEqual(false);
-    expect(plt.is('ios')).toEqual(true);
-  });
-
-  it('should set windows via querystring, even with android user agent', () => {
-    plt.setQueryParams('/?ionicplatform=windows');
-    plt.setUserAgent(ANDROID_UA);
-    plt.init();
-
-    expect(plt.is('core')).toEqual(false);
-    expect(plt.is('android')).toEqual(false);
-    expect(plt.is('windows')).toEqual(true);
-    expect(plt.is('ios')).toEqual(false);
-  });
-
-  it('should set ios via querystring, even with android user agent', () => {
-    plt.setQueryParams('/?ionicplatform=ios');
-    plt.setUserAgent(ANDROID_UA);
-    plt.init();
-
-    expect(plt.is('core')).toEqual(false);
-    expect(plt.is('android')).toEqual(false);
-    expect(plt.is('windows')).toEqual(false);
-    expect(plt.is('ios')).toEqual(true);
-  });
-
-  it('should set android via querystring', () => {
-    plt.setQueryParams('/?ionicplatform=android');
-    plt.init();
-
-    expect(plt.is('core')).toEqual(false);
-    expect(plt.is('android')).toEqual(true);
-    expect(plt.is('windows')).toEqual(false);
-    expect(plt.is('ios')).toEqual(false);
-  });
-
-  it('should set android via querystring, even with ios user agent', () => {
-    plt.setQueryParams('/?ionicplatform=android');
-    plt.setUserAgent(IPHONE_UA);
-    plt.init();
-
-    expect(plt.is('core')).toEqual(false);
-    expect(plt.is('android')).toEqual(true);
-    expect(plt.is('windows')).toEqual(false);
-    expect(plt.is('ios')).toEqual(false);
-  });
-
   it('should set windows platform via user agent', () => {
-    plt.setQueryParams('');
     plt.setUserAgent(WINDOWS_PHONE_UA);
     plt.init();
 
@@ -293,7 +226,6 @@ describe('Platform', () => {
   });
 
   it('should set windows platform via windows8 mobile user agent', () => {
-    plt.setQueryParams('');
     plt.setUserAgent(WINDOWS8_PHONE_UA);
     plt.init();
 
@@ -305,7 +237,6 @@ describe('Platform', () => {
   });
 
   it('should set windows platform via windows7 mobile user agent', () => {
-    plt.setQueryParams('');
     plt.setUserAgent(WINDOWS7_PHONE_UA);
     plt.init();
 
@@ -317,7 +248,6 @@ describe('Platform', () => {
   });
 
   it('should set android via user agent', () => {
-    plt.setQueryParams('');
     plt.setUserAgent(ANDROID_UA);
     plt.init();
 
@@ -327,7 +257,6 @@ describe('Platform', () => {
     expect(plt.is('android')).toEqual(true);
     expect(plt.is('ios')).toEqual(false);
 
-    plt.setQueryParams('');
     plt.setUserAgent(ANDROID_7_1_1_UA);
     plt.init();
 
@@ -339,7 +268,6 @@ describe('Platform', () => {
   });
 
   it('should set iphone via user agent', () => {
-    plt.setQueryParams('');
     plt.setUserAgent(IPHONE_UA);
     plt.init();
 
@@ -352,7 +280,6 @@ describe('Platform', () => {
     expect(plt.is('ipad')).toEqual(false);
     expect(plt.is('tablet')).toEqual(false);
 
-    plt.setQueryParams('');
     plt.setUserAgent(IPHONE_10_2_UA);
     plt.init();
 
@@ -367,7 +294,6 @@ describe('Platform', () => {
   });
 
   it('should set ipad via user agent', () => {
-    plt.setQueryParams('');
     plt.setUserAgent(IPAD_UA);
     plt.init();
 
@@ -380,7 +306,6 @@ describe('Platform', () => {
     expect(plt.is('iphone')).toEqual(false);
     expect(plt.is('tablet')).toEqual(true);
 
-    plt.setQueryParams('');
     plt.setUserAgent(IPAD_10_2_UA);
     plt.init();
 
@@ -396,7 +321,6 @@ describe('Platform', () => {
 
   // for https://forums.developer.apple.com/thread/25948
   it('should set ipad when user agent is iphone but navigator.platform is iPad', () => {
-    plt.setQueryParams('');
     plt.setUserAgent(IPHONE_UA);
     plt.setNavigatorPlatform('iPad');
     plt.init();
@@ -410,7 +334,6 @@ describe('Platform', () => {
     expect(plt.is('iphone')).toEqual(false);
     expect(plt.is('tablet')).toEqual(true);
 
-    plt.setQueryParams('');
     plt.setUserAgent(IPHONE_10_2_UA);
     plt.setNavigatorPlatform('iPad');
     plt.init();
@@ -426,7 +349,6 @@ describe('Platform', () => {
   });
 
   it('should set core platform for osx desktop firefox', () => {
-    plt.setQueryParams('');
     plt.setDefault('core');
     plt.setUserAgent(OSX_10_FIREFOX_43_UA);
     plt.init();
@@ -441,7 +363,6 @@ describe('Platform', () => {
   });
 
   it('should set core platform for osx desktop safari', () => {
-    plt.setQueryParams('');
     plt.setDefault('core');
     plt.setUserAgent(OSX_10_SAFARI_9_UA);
     plt.init();
@@ -456,7 +377,6 @@ describe('Platform', () => {
   });
 
   it('should set core platform for osx desktop chrome', () => {
-    plt.setQueryParams('');
     plt.setDefault('core');
     plt.setUserAgent(OSX_10_CHROME_49_UA);
     plt.init();
@@ -471,7 +391,6 @@ describe('Platform', () => {
   });
 
   it('should set core platform for windows desktop chrome', () => {
-    plt.setQueryParams('');
     plt.setDefault('core');
     plt.setUserAgent(WINDOWS_10_CHROME_40_UA);
     plt.init();
@@ -486,7 +405,6 @@ describe('Platform', () => {
   });
 
   it('should set core platform for windows desktop edge', () => {
-    plt.setQueryParams('');
     plt.setDefault('core');
     plt.setUserAgent(WINDOWS_10_EDGE_12_UA);
     plt.init();
@@ -501,7 +419,6 @@ describe('Platform', () => {
   });
 
   it('should set core platform for windows desktop IE', () => {
-    plt.setQueryParams('');
     plt.setDefault('core');
     plt.setUserAgent(WINDOWS_8_IE_11_UA);
     plt.init();

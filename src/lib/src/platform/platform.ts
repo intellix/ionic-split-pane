@@ -2,7 +2,6 @@
 import { EventEmitter, NgZone } from '@angular/core';
 
 import { getCss, isTextInput } from '../util/dom';
-import { QueryParams } from './query-params';
 import { removeArrayItem } from '../util/util';
 
 
@@ -37,7 +36,6 @@ export class Platform {
   private _dir: string;
   private _lang: string;
   private _ua: string;
-  private _qp = new QueryParams();
   private _nPlt: string;
   private _onResizes: Array<Function> = [];
   private _readyPromise: Promise<any>;
@@ -469,20 +467,6 @@ export class Platform {
   }
 
   /**
-   * @private
-   */
-  setQueryParams(url: string) {
-    this._qp.parseUrl(url);
-  }
-
-  /**
-   * Get the query string parameter
-   */
-  getQueryParam(key: string) {
-    return this._qp.get(key);
-  }
-
-  /**
    * Get the current url.
    */
   url() {
@@ -883,10 +867,6 @@ export class Platform {
    * @private
    */
   isPlatformMatch(queryStringName: string, userAgentAtLeastHas?: string[], userAgentMustNotHave: string[] = []): boolean {
-    const queryValue = this._qp.get('ionicplatform');
-    if (queryValue) {
-      return this.testQuery(queryValue, queryStringName);
-    }
 
     userAgentAtLeastHas = userAgentAtLeastHas || [queryStringName];
 
@@ -1185,9 +1165,6 @@ export function setupPlatform(doc: HTMLDocument, platformConfigs: {[key: string]
   plt.setWindow(win);
   plt.setNavigatorPlatform(win.navigator.platform);
   plt.setUserAgent(win.navigator.userAgent);
-
-  // set location values
-  plt.setQueryParams(win.location.href);
 
   plt.init();
 
