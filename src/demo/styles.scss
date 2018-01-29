@@ -25,13 +25,19 @@ body {
 
 .menu-inner {
   padding: 1rem;
-  background: #eee;
+  background: #dfdfdf;
+
+  div {
+    margin-bottom: .5rem;
+    padding: .5rem;
+    border: 1px solid #999;
+  }
 }
 
 .menu-content {
   flex: 1;
-  padding: 1rem;
-  background: #f9f9f9;
+  padding: .5rem;
+  background: #eee;
 }
 
 header {
