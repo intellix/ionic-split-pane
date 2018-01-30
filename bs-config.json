@@ -3,7 +3,7 @@
     "baseDir": "src/demo",
     "routes": {
       "/node_modules": "node_modules",
-      "/xc-ionic": "src/lib"
+      "/ionic-split-pane": "src/lib"
     }
   }
 }

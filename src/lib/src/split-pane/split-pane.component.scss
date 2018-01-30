@@ -15,7 +15,7 @@ ion-split-pane {
 
     > ion-menu {
       position: relative;
-      display: block;
+      visibility: visible;
 
       min-width: 270px;
 
@@ -29,8 +29,8 @@ ion-split-pane {
         transform: none !important;
       }
 
-      > .ion-backdrop {
-        display: hidden !important;
+      > ion-backdrop {
+        display: none !important;
       }
     }
   }

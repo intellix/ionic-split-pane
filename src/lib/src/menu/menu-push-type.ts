@@ -11,6 +11,7 @@ import { Menu } from './menu.interface';
  * The menu itself also slides over to reveal its bad self.
  */
 export class MenuPushType extends MenuType {
+
   constructor(menu: Menu, plt: Platform) {
     super(plt);
 
@@ -32,8 +33,8 @@ export class MenuPushType extends MenuType {
     menuAni.fromTo('translateX', menuClosedX, menuOpenedX);
     this.ani.add(menuAni);
 
-    const contentApi = new Animation(plt, menu.getContentElement());
-    contentApi.fromTo('translateX', '0px', contentOpenedX);
-    this.ani.add(contentApi);
+    const contentAni = new Animation(plt, menu.getContentElement());
+    contentAni.fromTo('translateX', '0px', contentOpenedX);
+    this.ani.add(contentAni);
   }
 }

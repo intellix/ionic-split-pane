@@ -1,6 +1,6 @@
 import { NgModule }      from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { IonicModule } from 'xc-ionic';
+import { IonicModule } from 'ionic-split-pane';
 
 import { AppComponent }  from './app.component';
 
