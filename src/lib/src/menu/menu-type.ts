@@ -41,8 +41,8 @@ export class MenuType implements IMenuType {
 
     // the cloned animation should not use an easing curve during seek
     this.ani
-        .reverse(isOpen)
-        .progressStart();
+      .reverse(isOpen)
+      .progressStart();
   }
 
   setProgessStep(stepValue: number) {
