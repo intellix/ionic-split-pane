@@ -56,6 +56,7 @@
     "camelcase": "^4.0.0",
     "concurrently": "3.2.0",
     "core-js": "^2.4.1",
+    "execa": "^0.9.0",
     "glob": "^7.1.1",
     "jasmine-core": "^2.5.2",
     "karma": "^1.5.0",
@@ -65,6 +66,7 @@
     "karma-jasmine": "^1.1.0",
     "karma-jasmine-html-reporter": "^0.2.2",
     "lite-server": "^2.2.2",
+    "node-sass": "^4.7.2",
     "rimraf": "^2.6.1",
     "rollup": "^0.41.5",
     "rollup-plugin-sourcemaps": "^0.4.1",
@@ -74,9 +76,5 @@
     "tslint": "^4.4.2",
     "typescript": "^2.2.1",
     "zone.js": "^0.8.4"
-  },
-  "dependencies": {
-    "execa": "^0.6.3",
-    "node-sass": "^4.5.3"
   }
 }
